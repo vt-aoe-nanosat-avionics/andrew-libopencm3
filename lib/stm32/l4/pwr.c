@@ -35,6 +35,7 @@
  */
 /**@{*/
 #include <libopencm3/stm32/pwr.h>
+#include <libopencm3/cm3/scb.h>
 
 void pwr_set_vos_scale(enum pwr_vos_scale scale)
 {
@@ -74,6 +75,13 @@ void pwr_enable_backup_domain_write_protect(void)
 
 void pwr_enable_standby_mode(void)
 {
+	scb_set_sleepdeep();
 	PWR_CR1 |= PWR_CR1_LPMS_STANDBY;
+	PWR_SCR |= PWR_SCR_CWUF5;
+	PWR_SCR |= PWR_SCR_CWUF4;
+	PWR_SCR |= PWR_SCR_CWUF3;
+	PWR_SCR |= PWR_SCR_CWUF2;
+	PWR_SCR |= PWR_SCR_CWUF1;
+	__asm__("wfi");
 }
 /**@}*/
