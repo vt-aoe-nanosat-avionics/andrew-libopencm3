@@ -72,4 +72,8 @@ void pwr_enable_backup_domain_write_protect(void)
 	PWR_CR1 &= ~PWR_CR1_DBP;
 }
 
+void pwr_enable_standby_mode(void)
+{
+	PWR_CR1 |= PWR_CR1_LPMS_STANDBY;
+}
 /**@}*/
