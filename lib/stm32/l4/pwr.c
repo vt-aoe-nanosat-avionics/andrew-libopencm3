@@ -84,4 +84,11 @@ void pwr_enable_standby_mode(void)
 	PWR_SCR |= PWR_SCR_CWUF1;
 	__asm__("wfi");
 }
+
+void pwr_enable_sleep_mode(void)
+{
+	scb_clear_sleepdeep();
+	PWR_CR1 &= ~PWR_CR1_LPR;
+	__asm__("wfi");
+}
 /**@}*/
