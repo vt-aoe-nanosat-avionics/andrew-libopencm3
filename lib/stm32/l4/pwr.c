@@ -87,6 +87,20 @@ void pwr_enable_stop0_mode(void)
 	__asm__("wfi");
 }
 
+void pwr_enable_stop1_mode(void)
+{
+	scb_set_sleepdeep();
+	PWR_CR1 |= PWR_CR1_LPMS_STOP_1;
+	__asm__("wfi");
+}
+
+void pwr_enable_stop2_mode(void)
+{
+	scb_set_sleepdeep();
+	PWR_CR1 |= PWR_CR1_LPMS_STOP_2;
+	__asm__("wfi");
+}
+
 void pwr_enable_standby_mode(void)
 {
 	scb_set_sleepdeep();
@@ -96,6 +110,13 @@ void pwr_enable_standby_mode(void)
 	PWR_SCR |= PWR_SCR_CWUF3;
 	PWR_SCR |= PWR_SCR_CWUF2;
 	PWR_SCR |= PWR_SCR_CWUF1;
+	__asm__("wfi");
+}
+
+void pwr_enable_shutdown_mode(void)
+{
+	scb_set_sleepdeep();
+	PWR_CR1 |= PWR_CR1_LPMS_SHUTDOWN;
 	__asm__("wfi");
 }
 /**@}*/
