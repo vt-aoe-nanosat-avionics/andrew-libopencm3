@@ -172,8 +172,9 @@ BEGIN_DECLS
 void pwr_set_vos_scale(enum pwr_vos_scale scale);
 void pwr_disable_backup_domain_write_protect(void);
 void pwr_enable_backup_domain_write_protect(void);
-void pwr_enable_standby_mode(void);
 void pwr_enable_sleep_mode(void);
+void pwr_enable_stop0_mode(void);
+void pwr_enable_standby_mode(void);
 
 END_DECLS
 

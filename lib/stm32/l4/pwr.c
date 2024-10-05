@@ -73,6 +73,20 @@ void pwr_enable_backup_domain_write_protect(void)
 	PWR_CR1 &= ~PWR_CR1_DBP;
 }
 
+void pwr_enable_sleep_mode(void)
+{
+	scb_clear_sleepdeep();
+	PWR_CR1 &= ~PWR_CR1_LPR;
+	__asm__("wfi");
+}
+
+void pwr_enable_stop0_mode(void)
+{
+	scb_set_sleepdeep();
+	PWR_CR1 |= PWR_CR1_LPMS_STOP_0;
+	__asm__("wfi");
+}
+
 void pwr_enable_standby_mode(void)
 {
 	scb_set_sleepdeep();
@@ -82,13 +96,6 @@ void pwr_enable_standby_mode(void)
 	PWR_SCR |= PWR_SCR_CWUF3;
 	PWR_SCR |= PWR_SCR_CWUF2;
 	PWR_SCR |= PWR_SCR_CWUF1;
-	__asm__("wfi");
-}
-
-void pwr_enable_sleep_mode(void)
-{
-	scb_clear_sleepdeep();
-	PWR_CR1 &= ~PWR_CR1_LPR;
 	__asm__("wfi");
 }
 /**@}*/
