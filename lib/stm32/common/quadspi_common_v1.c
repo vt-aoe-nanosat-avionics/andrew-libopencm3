@@ -18,7 +18,7 @@ void quadspi_set_flash_size(uint8_t fsize)
 
 void quadspi_set_high_time(uint8_t high_time)
 {
-	QUADSPI_DCR |= (high_time << QUADSPI_CR_HLFCYA_SHIFT);
+	QUADSPI_DCR |= (high_time << QUADSPI_CR_CSHT_SHIFT);
 }
 
 void quadspi_clear_flag(uint8_t flag)
@@ -86,7 +86,7 @@ void quadspi_set_instruction_mode(uint8_t mode)
 	QUADSPI_CCR |= mode << QUADSPI_CCR_IMODE_SHIFT;
 }
 
-void quadspi_send_instruction(uint8_t instruction)
+void quadspi_set_instruction(uint8_t instruction)
 {
 	QUADSPI_CCR |= instruction << QUADSPI_CCR_INST_SHIFT;
 }
