@@ -170,6 +170,23 @@ void quadspi_enable(void);
  */
 void quadspi_disable(void);
 
+void quadspi_set_flash_size(uint8_t size);
+void quadspi_set_high_time(uint8_t high_time);
+void quadspi_clear_flag(uint8_t flag);
+void quadspi_set_prescaler(uint8_t prescaler);
+void quadspi_enable_sample_shift(void);
+void quadspi_disable_sample_shift(void);
+void quadspi_get_busy(void);
+void quadspi_set_fmode(uint8_t mode);
+void quadspi_set_data_mode(uint8_t mode);
+void quadspi_set_num_dummy_cycles(uint8_t cycles);
+void quadspi_set_alternate_byte_size(uint8_t size);
+void quadspi_set_alternate_byte_mode(uint8_t mode);
+void quadpsi_set_address_size(uint8_t size);
+void quadspi_set_address_mode(uint8_t mode);
+void quadspi_set_instruction_mode(uint8_t mode);
+void quadspi_send_instruction(uint8_t instruction);
+
 END_DECLS
 
 /**@}*/
