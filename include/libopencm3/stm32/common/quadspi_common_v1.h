@@ -185,7 +185,7 @@ void quadspi_set_alternate_byte_mode(uint8_t mode);
 void quadpsi_set_address_size(uint8_t size);
 void quadspi_set_address_mode(uint8_t mode);
 void quadspi_set_instruction_mode(uint8_t mode);
-void quadspi_send_instruction(uint8_t instruction);
+void quadspi_set_instruction(uint8_t instruction);
 
 END_DECLS
 
