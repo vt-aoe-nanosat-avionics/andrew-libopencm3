@@ -176,7 +176,7 @@ void quadspi_clear_flag(uint8_t flag);
 void quadspi_set_prescaler(uint8_t prescaler);
 void quadspi_enable_sample_shift(void);
 void quadspi_disable_sample_shift(void);
-void quadspi_get_busy(void);
+uint8_t quadspi_get_busy(void);
 void quadspi_set_fmode(uint8_t mode);
 void quadspi_set_data_mode(uint8_t mode);
 void quadspi_set_num_dummy_cycles(uint8_t cycles);

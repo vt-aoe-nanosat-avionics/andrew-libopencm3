@@ -18,7 +18,7 @@ void quadspi_set_flash_size(uint8_t fsize)
 
 void quadspi_set_high_time(uint8_t high_time)
 {
-	QUADSPI_DCR |= (high_time << QUADSPI_CR_CSHT_SHIFT);
+	QUADSPI_DCR |= (high_time << QUADSPI_DCR_CSHT_SHIFT);
 }
 
 void quadspi_clear_flag(uint8_t flag)
@@ -41,7 +41,7 @@ void quadspi_disable_sample_shift(void)
 	QUADSPI_CR &= ~QUADSPI_CR_SSHIFT;
 }
 
-void quadspi_get_busy(void)
+uint8_t quadspi_get_busy(void)
 {
 	return QUADSPI_SR & QUADSPI_SR_BUSY;
 }
