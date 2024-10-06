@@ -186,6 +186,10 @@ void quadpsi_set_address_size(uint8_t size);
 void quadspi_set_address_mode(uint8_t mode);
 void quadspi_set_instruction_mode(uint8_t mode);
 void quadspi_set_instruction(uint8_t instruction);
+void quadspi_write_data(uint8_t data);
+void quadspi_set_fifo_threshold(uint8_t threshold);
+void quadspi_send_instruction(uint8_t instruction, uint8_t dataMode);
+void quadspi_write_register(uint8_t instruction, uint8_t dataMode, uint8_t data);
 
 END_DECLS
 
