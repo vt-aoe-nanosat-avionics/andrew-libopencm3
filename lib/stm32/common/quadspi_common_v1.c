@@ -90,3 +90,53 @@ void quadspi_set_instruction(uint8_t instruction)
 {
 	QUADSPI_CCR |= instruction << QUADSPI_CCR_INST_SHIFT;
 }
+
+void quadspi_write_data(uint8_t data)
+{
+	QUADSPI_DR = data;
+}
+
+void quadspi_set_fifo_threshold(uint8_t threshold)
+{
+	QUADSPI_CR |= threshold << QUADSPI_CR_FTHRES_SHIFT;
+}
+
+
+
+
+void quadspi_send_instruction(uint8_t instruction, uint8_t dataMode)
+{
+	while(quadspi_get_busy()) {
+		;
+	}
+	quadspi_clear_flag(QUADSPI_FCR_CTOF | QUADSPI_FCR_CSMF | QUADSPI_FCR_CTCF | QUADSPI_FCR_CTEF);
+	
+	quadspi_set_fmode(QUADSPI_CCR_FMODE_IWRITE);
+	quadspi_set_instruction_mode(dataMode);
+	quadspi_set_instruction(instruction);
+
+	while(!(QUADSPI_SR & QUADSPI_SR_TCF)) {
+		;
+	}
+	quadspi_clear_flag(QUADSPI_FCR_CTOF | QUADSPI_FCR_CSMF | QUADSPI_FCR_CTCF | QUADSPI_FCR_CTEF);
+}
+
+void quadspi_write_register(uint8_t instruction, uint8_t dataMode, uint8_t data)
+{
+	while(quadspi_get_busy()) {
+		;
+	}
+	quadspi_clear_flag(QUADSPI_FCR_CTOF | QUADSPI_FCR_CSMF | QUADSPI_FCR_CTCF | QUADSPI_FCR_CTEF);
+
+	quadspi_set_fifo_threshold(1);
+	quadspi_set_fmode(QUADSPI_CCR_FMODE_IWRITE);
+	quadspi_set_data_mode(dataMode);
+	quadspi_set_instruction_mode(dataMode);
+	quadspi_set_instruction(instruction);
+	quadspi_write_data(data);
+
+	while(!(QUADSPI_SR & QUADSPI_SR_TCF)) {
+		;
+	}
+	quadspi_clear_flag(QUADSPI_FCR_CTOF | QUADSPI_FCR_CSMF | QUADSPI_FCR_CTCF | QUADSPI_FCR_CTEF);
+}
