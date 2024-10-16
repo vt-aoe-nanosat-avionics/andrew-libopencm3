@@ -173,6 +173,10 @@ void pwr_set_vos_scale(enum pwr_vos_scale scale);
 void pwr_disable_backup_domain_write_protect(void);
 void pwr_enable_backup_domain_write_protect(void);
 
+void pwr_enable_low_power_run(void);
+void pwr_disable_low_power_run(void);
+void pwr_set_low_power_mode_selection(uint32_t lpms);
+
 END_DECLS
 
 #endif
