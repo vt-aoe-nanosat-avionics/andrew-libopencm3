@@ -73,55 +73,35 @@ void pwr_enable_backup_domain_write_protect(void)
 	PWR_CR1 &= ~PWR_CR1_DBP;
 }
 
-void pwr_enable_sleep_mode(void)
+/** Enable Low Power Run
+ * 
+ * This enables low power run mode. The clock frequency is limited to 2 MHz in this mode 
+ * and must be set before entering low power run mode.
+ */
+void pwr_enable_low_power_run(void)
 {
-	scb_clear_sleepdeep();
+	PWR_CR1 |= PWR_CR1_LPR;
+}
+
+/** Disable Low Power Run
+ * 
+ * This disables low power run mode
+ */
+void pwr_disable_low_power_run(void)
+{
 	PWR_CR1 &= ~PWR_CR1_LPR;
-	__asm__("wfi");
 }
 
-void pwr_enable_stop0_mode(void)
+/*---------------------------------------------------------------------------*/
+/** @brief Select the low power mode used in deep sleep.
+ * @param lpms low power mode @ref pwr_cr1_lpms
+ */
+void pwr_set_low_power_mode_selection(uint32_t lpms)
 {
-	scb_set_sleepdeep();
-	PWR_CR1 |= PWR_CR1_LPMS_STOP_0;
-	__asm__("wfe");
-}
+	uint32_t reg32;
 
-void pwr_enable_stop1_mode(void)
-{
-	scb_set_sleepdeep();
-	PWR_CR1 |= PWR_CR1_LPMS_STOP_1;
-	__asm__("wfe");
-}
-
-void pwr_enable_stop2_mode(void)
-{
-	scb_set_sleepdeep();
-	PWR_CR1 |= PWR_CR1_LPMS_STOP_2;
-	__asm__("wfe");
-}
-
-void pwr_enable_standby_mode(void)
-{
-	scb_set_sleepdeep();
-	PWR_CR1 |= PWR_CR1_LPMS_STANDBY;
-	PWR_SCR |= PWR_SCR_CWUF5;
-	PWR_SCR |= PWR_SCR_CWUF4;
-	PWR_SCR |= PWR_SCR_CWUF3;
-	PWR_SCR |= PWR_SCR_CWUF2;
-	PWR_SCR |= PWR_SCR_CWUF1;
-	__asm__("wfi");
-}
-
-void pwr_enable_shutdown_mode(void)
-{
-	scb_set_sleepdeep();
-	PWR_CR1 |= PWR_CR1_LPMS_SHUTDOWN;
-	PWR_SCR |= PWR_SCR_CWUF5;
-	PWR_SCR |= PWR_SCR_CWUF4;
-	PWR_SCR |= PWR_SCR_CWUF3;
-	PWR_SCR |= PWR_SCR_CWUF2;
-	PWR_SCR |= PWR_SCR_CWUF1;
-	__asm__("wfi");
+	reg32 = PWR_CR1;
+	reg32 &= ~(PWR_CR1_LPMS_MASK << PWR_CR1_LPMS_SHIFT);
+	PWR_CR1 = (reg32 | (lpms << PWR_CR1_LPMS_SHIFT));
 }
 /**@}*/
