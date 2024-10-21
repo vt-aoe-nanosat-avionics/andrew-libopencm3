@@ -132,6 +132,18 @@
 #define QUADSPI_CCR_INST_MASK   0xff
 #define QUADSPI_CCR_INST_SHIFT    0
 
+/* ABSIZE values */
+#define QUADSPI_CCR_ABSIZE_8BIT   0
+#define QUADSPI_CCR_ABSIZE_16BIT  1
+#define QUADSPI_CCR_ABSIZE_24BIT  2
+#define QUADSPI_CCR_ABSIZE_32BIT  3
+
+/* ADSIZE values */
+#define QUADSPI_CCR_ADSIZE_8BIT   0
+#define QUADSPI_CCR_ADSIZE_16BIT  1
+#define QUADSPI_CCR_ADSIZE_24BIT  2
+#define QUADSPI_CCR_ADSIZE_32BIT  3
+
 /* MODE values */
 #define QUADSPI_CCR_MODE_NONE   0
 #define QUADSPI_CCR_MODE_1LINE    1
@@ -163,34 +175,39 @@ BEGIN_DECLS
 /**
  * Enable the quadspi peripheral.
  */
-void quadspi_enable(void);
-
-/**
- * Disable the quadspi peripheral.
- */
-void quadspi_disable(void);
-
-void quadspi_set_flash_size(uint8_t size);
-void quadspi_set_high_time(uint8_t high_time);
-void quadspi_clear_flag(uint8_t flag);
-void quadspi_set_prescaler(uint8_t prescaler);
-void quadspi_enable_sample_shift(void);
-void quadspi_disable_sample_shift(void);
-uint8_t quadspi_get_busy(void);
-void quadspi_set_fmode(uint8_t mode);
-void quadspi_set_data_mode(uint8_t mode);
-void quadspi_set_num_dummy_cycles(uint8_t cycles);
-void quadspi_set_alternate_byte_size(uint8_t size);
-void quadspi_set_alternate_byte_mode(uint8_t mode);
-void quadpsi_set_address_size(uint8_t size);
-void quadspi_set_address_mode(uint8_t mode);
-void quadspi_set_instruction_mode(uint8_t mode);
-void quadspi_set_instruction(uint8_t instruction);
-void quadspi_write_data(uint8_t data);
-void quadspi_set_fifo_threshold(uint8_t threshold);
-void quadspi_send_instruction(uint8_t instruction, uint8_t dataMode);
-void quadspi_write_register(uint8_t instruction, uint8_t dataMode, uint8_t data);
-
-END_DECLS
+//void quadspi_enable(void);
+//
+///**
+// * Disable the quadspi peripheral.
+// */
+//void quadspi_disable(void);
+//
+//void quadspi_set_flash_size(uint8_t size);
+//void quadspi_set_high_time(uint8_t high_time);
+//void quadspi_clear_flag(uint8_t flag);
+//uint8_t quadspi_get_flag(uint8_t flag);
+//void quadspi_set_prescaler(uint8_t prescaler);
+//void quadspi_enable_sample_shift(void);
+//void quadspi_disable_sample_shift(void);
+//uint8_t quadspi_get_busy(void);
+//void quadspi_set_fmode(uint8_t mode);
+//void quadspi_set_data_mode(uint8_t mode);
+//void quadspi_set_num_dummy_cycles(uint8_t cycles);
+//void quadspi_set_alternate_byte_size(uint8_t size);
+//void quadspi_set_alternate_byte_mode(uint8_t mode);
+//void quadspi_set_address_size(uint8_t size);
+//void quadspi_set_address_mode(uint8_t mode);
+//void quadspi_set_address(uint32_t address);
+//void quadspi_set_instruction_mode(uint8_t mode);
+//void quadspi_set_instruction(uint8_t instruction);
+//void quadspi_set_data_length(uint8_t length);
+//void quadspi_set_data(uint32_t data);
+//uint8_t quadspi_get_data(void);
+//void quadspi_set_fifo_threshold(uint8_t threshold);
+//void quadspi_send_instruction(uint8_t instruction, uint8_t dataMode);
+//void quadspi_write_register(uint8_t instruction, uint8_t dataMode, uint8_t data);
+//void quadspi_read_register(uint8_t instruction, uint8_t dataMode);
+//
+//END_DECLS
 
 /**@}*/
