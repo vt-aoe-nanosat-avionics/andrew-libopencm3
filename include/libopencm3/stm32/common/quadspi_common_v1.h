@@ -702,6 +702,14 @@ uint32_t quadspi_write(struct quadspi_command *command, const void *buffer, uint
 uint32_t quadspi_read(struct quadspi_command *command, void *buffer, uint32_t buffer_size);
 
 /**@}*/
+
+
+
+
+
+
+
+
 END_DECLS
 
 /**@}*/
